@@ -1,0 +1,47 @@
+<template>
+  <div id="app">
+      <router-view />
+  </div>
+</template>
+<script>
+  import {mapMutations} from 'vuex'
+  export default {
+    name:"home",
+    methods:{
+      ...mapMutations([
+        'CHANGE_RIGHT_SHOW'
+      ])
+    },
+
+    watch:{
+      $route(to){
+        this.CHANGE_RIGHT_SHOW(to.meta.rightShow)
+      }
+    }
+  }
+</script>
+<style lang="less">
+  @import "assets/less/reset";
+  body,html{
+    width: 100%;
+    height: 100%;
+  }
+  #app {
+    height: 100%;
+    font-family:  'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  #nav {
+    padding: 30px;
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+      &.router-link-exact-active {
+        color: #42b983;
+      }
+    }
+  }
+</style>
